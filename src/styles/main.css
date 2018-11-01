@@ -86,3 +86,7 @@ li:last-of-type {
   width: 150px;
   filter: opacity(0.3);
 }
+
+.avatar{
+  border-radius: 10px;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import List from './components/List'
 import SearchBar from './components/SearchBar'
+import styles from './styles/main.css';
 
 class App extends Component {
 
@@ -13,13 +14,27 @@ class App extends Component {
     }
   }
 
+  
+
+  // componentDidMount(){
+  //   axios.get('https://api.myjson.com/bins/hraj4')
+  //   .then(json => json.data.map(result => (
+  //     {
+  //       name: `${result.name}`,       
+  //       avatar: `${result.photo}`,
+  //       email: `${result.email}`, 
+  //     })))
+  //   .then(newData => this.setState({users: newData, store: newData}))
+  //   .catch(error => alert(error))
+  // }
+
   componentDidMount(){
     axios.get('https://randomuser.me/api/?results=10')
     .then(json => json.data.results.map(result => (
       {
-        name: `${result.name.first} ${result.name.last}`,
-        
-        avatar: `${result.picture.medium}`
+        name: `${result.name.first} ${result.name.last}`,       
+        avatar: `${result.picture.large}`,
+        email: `${result.email}`, 
       })))
     .then(newData => this.setState({users: newData, store: newData}))
     .catch(error => alert(error))
@@ -32,8 +47,8 @@ class App extends Component {
   render() {
     const {users} = this.state
     return (
-      <div className="Card">
-        <div className="header">NAME LIST</div>
+      <div className={styles['Card']}>
+        <div className={styles['header']}>NAME LIST</div>
         <SearchBar searchFunc={(e) => this.filterNames(e)}/>
         <List usernames={users}/>
       </div>
@@ -42,6 +57,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
